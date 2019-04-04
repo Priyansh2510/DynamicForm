@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.0/dist/jquery.validate.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css"></script>
+	<script src="./select2.js"></script>
+    <script src="./dynamicForm.js"></script>
+	<style>
+	.frmodify {
+    overflow-y: scroll;
+    height: 100vh;
+}
+.frmodify .form-group {
+    width: 100%;
+    display: inline-block;
+}
+    .frmodify hr {
+        margin-top:0px;
+    }</style>
+</head>
+
+<body>
+    <form id="dForm" class="frmodify"></form>
+</body>
+<script>
+$('.select2').select2();
+    var config =
+    {
+				  elements: [
+					{
+					  wrapperType: "div",
+					  wrapperAttributes: [
+						{
+						  class: "form-group"
+						}
+					  ],
+					  wrapperSub: [
+						{
+						  elementType: "label",
+						  elementAttributes: [
+							{
+							  class: "col-sm-4 control-label"
+							}
+						  ],
+						  elementInnerHTML: "Employee Name:",
+						  elements: [
+							{
+							  wrapperType: "div",
+							  wrapperAttributes: [
+								{
+								  class: "col-sm-8"
+								}
+							  ],
+							  wrapperSub: [
+								{
+								  elementType: "input",
+								  elementAttributes: [
+									{
+									  id: "tbEmployeeName",
+									  class: "form-control",
+									  type: "text",
+									  placeholder: "Enter Employee Name",
+									  minlength: "5",
+									  maxlength: "150"
+									}
+								  ]
+								},
+								{
+								  elementType: "label",
+								  elementAttributes: [
+									{
+									  style: "color: red",
+									  class: "hide",
+									  id: "errorEmployeeName"
+									}
+								  ]
+								}
+							  ]
+							}
+						  ]
+						}
+					  ]
+					},
+					{
+					  wrapperType: "div",
+					  wrapperAttributes: [
+						{
+						  class: "form-group"
+						}
+					  ],
+					  wrapperSub: [
+						{
+						  elementType: "label",
+						  elementAttributes: [
+							{
+							  class: "col-sm-4 control-label"
+							}
+						  ],
+						  elementInnerHTML: "Employee Code:",
+						  elements: [
+							{
+							  wrapperType: "div",
+							  wrapperAttributes: [
+								{
+								  class: "col-sm-8"
+								}
+							  ],
+							  wrapperSub: [
+								{
+								  elementType: "input",
+								  elementAttributes: [
+									{
+									  id: "tbEmployeeCode",
+									  class: "form-control",
+									  type: "text",
+									  placeholder: "Enter Employee Code",
+									  minlength: "3",
+									  maxlength: "50"
+									}
+								  ]
+								},
+								{
+								  elementType: "label",
+								  elementAttributes: [
+									{
+									  style: "color: red;",
+									  class: "hide",
+									  id: "errorEmployeeCode"
+									}
+								  ]
+								}
+							  ]
+							}
+						  ]
+						}
+					  ]
+					},
+					{
+					  wrapperType: "div",
+					  wrapperAttributes: [
+						{
+						  class: "form-group"
+						}
+					  ],
+					  wrapperSub: [
+						{
+						  elementType: "label",
+						  elementAttributes: [
+							{
+							  class: "col-sm-4 control-label"
+							}
+						  ],
+						  elementInnerHTML: "Role:",
+						  elements: [
+							{
+							  wrapperType: "div",
+							  wrapperAttributes: [
+								{
+								  class: "col-sm-8"
+								}
+							  ],
+							  wrapperSub: [
+								{
+								  elementType: "select",
+								  elementAttributes: [
+									{
+									  id: "ddlRole",
+									  class: "form-control select2 ddlRole"
+									}
+								  ],
+								  options: [
+									{
+									  text: "Admin",
+									  value: "1"
+									},
+									{
+									  text: "Supervisor",
+									  value: "2"
+									}
+								  ]
+								},
+								{
+								  elementType: "label",
+								  elementAttributes: [
+									{
+									  style: "color: red;",
+									  class: "hide",
+									  id: "errorRole"
+									}
+								  ]
+								}
+							  ]
+							}
+						  ]
+						}
+					  ]
+					},
+					{
+					  wrapperType: "div",
+					  wrapperAttributes: [
+						{
+						  class: "form-group"
+						}
+					  ],
+					  wrapperSub: [
+						{
+						  elementType: "label",
+						  elementAttributes: [
+							{
+							  class: "col-sm-4 control-label"
+							}
+						  ],
+						  elementInnerHTML: "Address:",
+						  elements: [
+							{
+							  wrapperType: "div",
+							  wrapperAttributes: [
+								{
+								  class: "col-sm-8"
+								}
+							  ],
+							  wrapperSub: [
+								{
+								  elementType: "textarea",
+								  elementAttributes: [
+									{
+									  id: "taAddress",
+									  class: "form-control",
+									  placeholder: "Enter Address",
+									  minlength: "3",
+									  maxlength: "200",
+									  rows: "2",
+									  cols: "50"
+									}
+								  ]
+								},
+								{
+								  elementType: "label",
+								  elementAttributes: [
+									{
+									  style: "color: red;",
+									  class: "hide",
+									  id: "errorAddress"
+									}
+								  ]
+								}
+							  ]
+							}
+						  ]
+						}
+					  ]
+					},
+					{
+					  wrapperType: "div",
+					  wrapperAttributes: [
+						{
+						  class: "form-group"
+						}
+					  ],
+					  wrapperSub: [
+						{
+						  elementType: "label",
+						  elementAttributes: [
+							{
+							  class: "col-sm-4 control-label"
+							}
+						  ],
+						  elementInnerHTML: "Email:",
+						  elements: [
+							{
+							  wrapperType: "div",
+							  wrapperAttributes: [
+								{
+								  class: "col-sm-8"
+								}
+							  ],
+							  wrapperSub: [
+								{
+								  elementType: "input",
+								  elementAttributes: [
+									{
+									  id: "tbEmail",
+									  class: "form-control",
+									  type: "email",
+									  placeholder: "Enter Email",
+									  minlength: "3",
+									  maxlength: "100"
+									}
+								  ]
+								},
+								{
+								  elementType: "label",
+								  elementAttributes: [
+									{
+									  style: "color: red;",
+									  class: "hide",
+									  id: "errorEmail"
+									}
+								  ]
+								}
+							  ]
+							}
+						  ]
+						}
+					  ]
+					},
+					{
+					  wrapperType: "div",
+					  wrapperAttributes: [
+						{
+						  class: "form-group"
+						}
+					  ],
+					  wrapperSub: [
+						{
+						  elementType: "label",
+						  elementAttributes: [
+							{
+							  class: "col-sm-4 control-label"
+							}
+						  ],
+						  elementInnerHTML: "Contact:",
+						  elements: [
+							{
+							  wrapperType: "div",
+							  wrapperAttributes: [
+								{
+								  class: "col-sm-8"
+								}
+							  ],
+							  wrapperSub: [
+								{
+								  elementType: "input",
+								  elementAttributes: [
+									{
+									  id: "tbContact",
+									  class: "form-control",
+									  type: "text",
+									  placeholder: "Enter Contact No.",
+									  minlength: "10",
+									  maxlength: "15"
+									}
+								  ]
+								},
+								{
+								  elementType: "label",
+								  elementAttributes: [
+									{
+									  style: "color: red;",
+									  class: "hide",
+									  id: "errorContact"
+									}
+								  ]
+								}
+							  ]
+							}
+						  ]
+						}
+					  ]
+					},
+					{
+					  wrapperType: "div",
+					  wrapperAttributes: [
+						{
+						  class: "form-group"
+						}
+					  ],
+					  wrapperSub: [
+						{
+						  elementType: "label",
+						  elementAttributes: [
+							{
+							  class: "col-sm-4 control-label"
+							}
+						  ],
+						  elementInnerHTML: "Can User Login:",
+						  elements: [
+							{
+							  wrapperType: "div",
+							  wrapperAttributes: [
+								{
+								  class: "col-sm-8"
+								}
+							  ],
+							  wrapperSub: [
+								{
+								  elementType: "input",
+								  elementAttributes: [
+									{
+									  id: "cbCanUserLogin",
+									  type: "checkbox"
+									}
+								  ]
+								},
+								{
+								  elementType: "label",
+								  elementAttributes: [
+									{
+									  style: "color: red;",
+									  class: "hide",
+									  id: "errorCanUserLogin"
+									}
+								  ]
+								}
+							  ]
+							}
+						  ]
+						}
+					  ]
+					},
+					{
+      wrapperType: "div",
+      wrapperAttributes: [
+        {
+          class: "form-group"
+        }
+      ],
+      wrapperSub: [
+        {
+          elementType: "label",
+          elementAttributes: [
+            {
+              class: "col-sm-4 control-label"
+            }
+          ],
+          elementInnerHTML: "User Name:",
+          elements: [
+            {
+              wrapperType: "div",
+              wrapperAttributes: [
+                {
+                  class: "col-sm-8"
+                }
+              ],
+              wrapperSub: [
+                {
+                  elementType: "input",
+                  elementAttributes: [
+                    {
+                      id: "tbUserName",
+                      class: "form-control",
+                      type: "text",
+                      placeholder: "Enter UserName",
+                      minlength: "6",
+                      maxlength: "8"
+                    }
+                  ]
+                },
+                {
+                  elementType: "label",
+                  elementAttributes: [
+                    {
+                      style: "color: red;",
+                      class: "hide",
+                      id: "errorUserName"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+	$('#dForm').dform(config);
+</script>
+
+</html>
